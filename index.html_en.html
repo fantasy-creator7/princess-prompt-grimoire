@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRINCESS PROMPT GRIMOIRE | Free Trial</title>
+    <style>
+        /* 画像のデザインを再現するためのカラーパレット */
+        :root {
+            --bg-color: #0d091a;        /* 深い背景色 */
+            --card-bg: #130d2b;         /* カードの背景 */
+            --accent-gold: #c6a35f;     /* 落ち着いたゴールド */
+            --border-purple: #2a2245;   /* 境界線の紫 */
+            --text-white: #ffffff;
+            --text-dim: #8b83ad;        /* 少し暗いテキスト */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            font-family: 'Times New Roman', serif; /* セリフ体で魔導書感を演出 */
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container { width: 100%; max-width: 650px; }
+
+        /* ヘッダー部分 */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header .star {
+            color: var(--accent-gold);
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            letter-spacing: 4px;
+            color: var(--accent-gold);
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #7b74f0;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .sub-header {
+            font-size: 11px;
+            color: var(--accent-gold);
+            margin-top: 15px;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        /* セクション・カード */
+        .section-card {
+            background-color: transparent;
+            border: 1px solid var(--border-purple);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        /* ボタンのデザイン */
+        .button-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .btn {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-purple);
+            color: var(--text-dim);
+            padding: 10px 18px;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .btn:hover {
+            border-color: var(--accent-gold);
+            color: var(--text-white);
+        }
+
+        .btn.active {
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            background-color: rgba(198, 163, 95, 0.05);
+        }
+
+        /* 出力エリア */
+        .output-title {
+            font-size: 12px;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            margin-top: 20px;
+        }
+
+        .prompt-box {
+            width: 100%;
+            height: 70px;
+            background-color: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-purple);
+            color: #d1cdeb;
+            padding: 12px;
+            font-size: 12px;
+            border-radius: 4px;
+            resize: none;
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+
+        .action-area {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .action-btn {
+            padding: 12px;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid var(--accent-gold);
+            flex: 1;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .copy-line { background-color: transparent; color: var(--accent-gold); }
+        .copy-line:hover { background-color: var(--accent-gold); color: var(--bg-color); }
+
+        .copy-color { background-color: var(--accent-gold); color: var(--bg-color); }
+        .copy-color:hover { opacity: 0.8; }
+
+        .reset-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-purple);
+            color: var(--text-dim);
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        /* 英語併記用のスタイル */
+        .en { font-size: 9px; display: block; opacity: 0.7; margin-top: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="star">✧</div>
+        <h1>PRINCESS PROMPT GRIMOIRE</h1>
+        <p>AI Fantasy Art &amp; Coloring Page Prompt Generator | Free Trial</p>
+        <div class="sub-header">FREE LITE VERSION</div>
+    </div>
+
+    <!-- メイン選択エリア -->
+    <div class="section-card">
+        <div class="section-title">Hairstyle</div>
+        <div class="button-grid" id="hair-grid">
+            <button class="btn" data-value="long flowing braided hair">Long Braid</button>
+            <button class="btn" data-value="elegant high bun hairstyle">High Bun</button>
+            <button class="btn" data-value="short wavy bob hair">Wavy Bob</button>
+            <button class="btn" data-value="regal braided crown updo">Braided Crown</button>
+        </div>
+
+        <div class="section-title">Hair Color</div>
+        <div class="button-grid" id="haircolor-grid">
+            <button class="btn" data-value="platinum blonde hair">Platinum Blonde</button>
+            <button class="btn" data-value="fiery red hair">Fiery Red</button>
+            <button class="btn" data-value="deep black hair">Deep Black</button>
+            <button class="btn" data-value="lavender purple hair">Lavender</button>
+        </div>
+
+        <div class="section-title">Dress Style</div>
+        <div class="button-grid" id="color-grid">
+            <button class="btn" data-value="ice blue and silver glittering dress">Ice Blue</button>
+            <button class="btn" data-value="gothic crimson red and black dress">Gothic Crimson</button>
+            <button class="btn" data-value="pure white lace celestial gown">Pure White</button>
+            <button class="btn" data-value="midnight purple velvet royal dress">Midnight Purple</button>
+        </div>
+
+        <div class="section-title">Background World</div>
+        <div class="button-grid" id="bg-grid">
+            <button class="btn" data-value="inside a mystical glowing forest">Mystic Forest</button>
+            <button class="btn" data-value="in front of an ancient gothic castle">Ancient Castle</button>
+            <button class="btn" data-value="surrounded by a blooming rose garden">Rose Garden</button>
+            <button class="btn" data-value="inside a grand magical library">Magic Library</button>
+        </div>
+    </div>
+
+    <!-- 出力エリア -->
+    <div class="section-card">
+        <div class="output-title">① Line Art Prompt</div>
+        <textarea id="output-lineart" class="prompt-box" readonly></textarea>
+        
+        <div class="output-title">② Colored Art Prompt</div>
+        <textarea id="output-colored" class="prompt-box" readonly></textarea>
+
+        <div class="action-area">
+            <button class="action-btn copy-line" id="copy-line">Copy Line Art</button>
+            <button class="action-btn copy-color" id="copy-color">Copy Colored</button>
+        </div>
+
+        <button class="reset-btn" id="reset-trigger">Reset All Selections</button>
+    </div>
+
+    <!-- 誘導エリア -->
+    <div style="text-align: center; margin-top: 20px; font-size: 12px; color: var(--accent-gold);">
+        <p>Copy a prompt and paste it into Google Flow (or any AI image generation tool) to try it out.<br>⚠️ If you plan to use generated images commercially, please check the terms of service of the AI image generation tool you use.</p>
+    </div>
+</div>
+
+<script>
+    const selections = { hair: '', haircolor: '', color: '', bg: '' };
+    // Nano Banana (Gemini image generation) optimized version.
+    // Nano Banana responds best to a single natural-language description
+    // rather than a comma-separated tag list. Flags like --ar and
+    // parenthetical weighting like (word) are not supported, so this
+    // version builds one descriptive sentence instead, and folds exclusions
+    // (hands, extra people, etc.) into the sentence rather than a separate
+    // negative-prompt field.
+
+    function buildFeatureText() {
+        const hair = selections.hair || "an elegant hairstyle";
+        const hairColor = selections.haircolor ? ", " + selections.haircolor : "";
+        const dress = selections.color ? "wearing " + selections.color : "wearing an elegant gown";
+        const bg = selections.bg || "in a beautiful fantasy setting";
+        return "with " + hair + hairColor + ", " + dress + ", " + bg;
+    }
+
+    function buildLinePrompt() {
+        const feature = buildFeatureText();
+        return "A detailed black-and-white coloring book page showing a single exquisite fantasy princess, " + feature +
+            ". The linework is clean, sharp, and intricately detailed, drawn entirely in black outlines on a white background with no shading, no color fill, and no gray tones, making it ideal for printing and coloring. " +
+            "She has elegant, anatomically correct hands with exactly five fingers on each hand. " +
+            "Only one person appears in the image, and the background stays simple and uncluttered with no extra people or crowds. " +
+            "Vertical portrait orientation, 3:4 aspect ratio.";
+    }
+
+    function buildColorPrompt() {
+        const feature = buildFeatureText();
+        return "A vibrant, masterpiece-quality anime concept art illustration of a single exquisite fantasy princess, " + feature +
+            ". The scene has dynamic lighting, an ethereal glowing atmosphere, and a cinematic composition, rendered in highly detailed, 8k quality. " +
+            "She has elegant, anatomically correct hands with exactly five fingers on each hand. " +
+            "Only one person appears in the image, and the background stays clean and focused with no extra background characters or crowds. " +
+            "Vertical portrait orientation, 3:4 aspect ratio.";
+    }
+
+    function updatePrompts() {
+        document.getElementById('output-lineart').value = buildLinePrompt();
+        document.getElementById('output-colored').value = buildColorPrompt();
+    }
+
+    function setupGrid(gridId, selectionKey) {
+        const grid = document.getElementById(gridId);
+        const buttons = grid.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                button.classList.add('active');
+                selections[selectionKey] = button.getAttribute('data-value');
+                updatePrompts();
+            });
+        });
+    }
+    setupGrid('hair-grid', 'hair');
+    setupGrid('haircolor-grid', 'haircolor');
+    setupGrid('color-grid', 'color');
+    setupGrid('bg-grid', 'bg');
+    updatePrompts();
+    function copyToClipboard(text, btn) {
+        const dummy = document.createElement('textarea');
+        dummy.value = text;
+        document.body.appendChild(dummy);
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        const original = btn.innerText;
+        btn.innerText = "✅ COPIED!";
+        setTimeout(() => btn.innerText = original, 1200);
+    }
+    document.getElementById('copy-line').addEventListener('click', function() { copyToClipboard(document.getElementById('output-lineart').value, this); });
+    document.getElementById('copy-color').addEventListener('click', function() { copyToClipboard(document.getElementById('output-colored').value, this); });
+    document.getElementById('reset-trigger').addEventListener('click', () => {
+        document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+        Object.keys(selections).forEach(key => selections[key] = '');
+        updatePrompts();
+    });
+</script>
+</body>
+</html>
